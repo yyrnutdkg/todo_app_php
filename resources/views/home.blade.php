@@ -24,11 +24,20 @@
                         <th>Todoリスト</th>
                     </thead>
                     <tbody>
-                        <td>本を読む</td>
-                        <td>
-                            <a href="" class="btn btn-outline-primary">編集</a>
-                            <a href="" class="btn btn-outline-danger">削除</a>
-                        </td>
+                        @forelse ($todos as $todo)
+                        <tr>
+                            <td>{{ $todo->title }}</td>
+                            <td>
+                                <a href="{{ route('todo.edit', $todo->id) }}" class="btn btn-outline-primary">編集</a>
+                                <a href="" class="btn btn-outline-danger">削除</a>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td>タスクはありません！</td>
+                        </tr>
+                        @endforelse
+
                     </tbody>
                 </table>
             </div>
