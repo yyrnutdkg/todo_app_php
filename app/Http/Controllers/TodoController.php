@@ -76,7 +76,8 @@ class TodoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $todo = Todo::where('id', $id)->where('user_id', Auth::user()->id)->first();
+        return view('edit_todo', compact('todo'));
     }
 
     /**
