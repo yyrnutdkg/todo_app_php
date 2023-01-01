@@ -89,7 +89,25 @@ class TodoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'=>'required|string|max:255',
+            'description'=>'nullable|string',
+            'completed' =>'nullable'
+        ]);
+
+        $todo = Todo::find($id);
+        $todo->title = $request->input('title');
+        $todo->description = $request->input('description');
+
+        if($request->has('completed')){
+            $todo->completed = true;
+        }else{
+            $todo->completed = false;
+        }
+
+        $todo->save();
+
+        return back();
     }
 
     /**
