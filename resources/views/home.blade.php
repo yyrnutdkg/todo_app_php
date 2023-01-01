@@ -29,7 +29,13 @@
                             <td>{{ $todo->title }}</td>
                             <td>
                                 <a href="{{ route('todo.edit', $todo->id) }}" class="btn btn-outline-primary">編集</a>
-                                <a href="" class="btn btn-outline-danger">削除</a>
+                            </td>
+                            <td>
+                                <form action="{{ route('todo.destroy', $todo->id) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
+                                </form>
                             </td>
                         </tr>
                         @empty

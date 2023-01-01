@@ -65,7 +65,7 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -96,6 +96,9 @@ class TodoController extends Controller
         ]);
 
         $todo = Todo::find($id);
+        if (auth()->user()->id != $todo->user_id) {
+            return redirect(route('todo.index'))->with('error', '許可されていない操作です。');
+        }
         $todo->title = $request->input('title');
         $todo->description = $request->input('description');
 
@@ -118,6 +121,12 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $todo = Todo::find($id);
+        if (auth()->user()->id != $todo->user_id) {
+            return redirect(route('todo.index'))->with('error', '許可されていない操作です。');
+        }
+
+        $todo->delete();
+        return redirect()->route('todo.index');
     }
 }
