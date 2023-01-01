@@ -28,6 +28,9 @@
                         <tr>
                             <td>{{ $todo->title }}</td>
                             <td>
+                                <a href="{{ route('todo.show', $todo->id) }}" class="btn btn-outline-success">詳細</a>
+                            </td>
+                            <td>
                                 <a href="{{ route('todo.edit', $todo->id) }}" class="btn btn-outline-primary">編集</a>
                             </td>
                             <td>
