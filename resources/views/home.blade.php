@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">Todoリスト一覧</div>
                 <h5 class="card-header">
                     <a href="{{ route('todo.create')}}" class="btn btn-outline-success">Todoを追加する！</a>
                 </h5>

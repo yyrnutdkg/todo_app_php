@@ -11,13 +11,32 @@
                 </h5>
 
                 <div class="card-body">
+                  @if (session()->has('success'))
+                    <div class="alert alert-success">
+                      {{ session()->get('success') }}
+                    </div>
+                  @endif
+                  @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                  @endif
                   <form method="POST" action="{{ route('todo.update', $todo->id) }}">
                     @csrf
                     @method('PUT')
 
                     <div class="form-group">
                       <label for="title">タイトル</label>
-                      <input id="title" name="title" class="form-control" value="{{ $todo->title }}" >
+                      <input id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ $todo->title }}" >
+                      @error('title')
+                        <div class="alert alert-danger">
+                          {{ $message }}
+                        </div>
+                      @enderror
                     </div>
                     <div class="form-group">
                       <label for="description">詳細メモ</label>

@@ -54,7 +54,7 @@ class TodoController extends Controller
         $todo->user_id = Auth::user()-> id;
         $todo->save();
 
-        return back();
+        return back()->with('success', 'タスクを作成しました');
     }
 
     /**
