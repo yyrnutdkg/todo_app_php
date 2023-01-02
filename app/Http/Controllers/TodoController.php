@@ -18,10 +18,21 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $todos = Todo::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')-> get();
-        return view('home', compact('todos'));
+        $keyword = $request->input('search-word');
+        $query = Todo::query();
+
+        if(!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%")->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc');
+        }else{
+            $query->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc');
+        }
+
+        $todos = $query->get();
+
+        //$todos = Todo::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')-> get();
+        return view('home', compact('todos', 'keyword'));
     }
 
     /**

@@ -9,6 +9,13 @@
                 <h5 class="card-header">
                     <a href="{{ route('todo.create')}}" class="btn btn-outline-success">Todoを追加する！</a>
                 </h5>
+                <div class="search m-2">
+                    <form method="GET" action="{{ route('todo.index')}}">
+                        <input type="search"  name="search-word"  value="{{request('search')}}" placeholder="キーワードを入力">
+                        <input type="submit" value="検索" class="btn btn-outline-info">
+                    </form>
+                </div>
+
 
                 <div class="card-body">
                     @if (session('status'))
