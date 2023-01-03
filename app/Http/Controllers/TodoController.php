@@ -30,8 +30,6 @@ class TodoController extends Controller
         }
 
         $todos = $query->get();
-
-        //$todos = Todo::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')-> get();
         return view('home', compact('todos', 'keyword'));
     }
 
@@ -122,7 +120,7 @@ class TodoController extends Controller
 
         $todo->save();
 
-        return back();
+        return redirect(route('todo.index'))->with('success', 'タスクを修正しました');;
     }
 
     /**
