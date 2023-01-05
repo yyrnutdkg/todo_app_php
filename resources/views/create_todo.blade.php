@@ -30,7 +30,7 @@
 
                     <div class="form-group">
                       <label for="title">タイトル</label>
-                      <input id="title" name="title" class="form-control @error('title') is-invalid @enderror" >
+                      <input id="title" name="title" class="form-control  @error('title') is-invalid @enderror" value="{{ old('title') }}" >
                       @error('title')
                         <div class="alert alert-danger">
                           {{ $message }}
@@ -39,11 +39,16 @@
                     </div>
                     <div class="form-group">
                       <label for="description">詳細メモ</label>
-                      <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+                      <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ old('description') }}</textarea>
                     </div>
                     <div class="form-group">
                       <label for="description">期限日</label>
                       <input type="date" class="form-control" name="due_date" id="due_date" value="{{ old('due_date') }}" />
+                      @error('due_date')
+                        <div class="alert alert-danger">
+                          {{ $message }}
+                        </div>
+                      @enderror
                     </div>
 
                     <div class="form-group">

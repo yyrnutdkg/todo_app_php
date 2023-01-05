@@ -55,7 +55,7 @@ class TodoController extends Controller
             'title'=>'required|string|max:255',
             'description'=>'nullable|string',
             'completed' =>'nullable',
-            'due_date' => 'nullable'
+            'due_date' => 'nullable|date|after:yesterday'
         ]);
 
         $todo = new Todo();
@@ -105,7 +105,7 @@ class TodoController extends Controller
             'title'=>'required|string|max:255',
             'description'=>'nullable|string',
             'completed' =>'nullable',
-            'due_date' => 'nullable'
+            'due_date' => 'nullable|date|after:today'
         ]);
 
         $todo = Todo::find($id);
