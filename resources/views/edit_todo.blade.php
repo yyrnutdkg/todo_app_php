@@ -44,7 +44,12 @@
                     </div>
                     <div class="form-group">
                       <label for="description">期限日</label>
-                      <input type="date" class="form-control" name="due_date" id="due_date" value="{{ old('due_date') }}" />
+                      <input type="date" class="form-control" name="due_date" id="due_date" value="{{ $todo->due_date  }}" />
+                      @error('title')
+                        <div class="alert alert-danger">
+                          {{ $message }}
+                        </div>
+                      @enderror
                     </div>
 
                     <div class="form-group">
