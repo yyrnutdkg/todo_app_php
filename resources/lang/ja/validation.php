@@ -136,9 +136,9 @@ return [
     |
     */
 
-    'custom' => [
-        '属性名' => [
-            'ルール名' => 'カスタムメッセージ',
+    'values' => [
+        'due_date' => [
+            'yesterday' => '昨日',
         ],
     ],
 
@@ -155,6 +155,7 @@ return [
 
     'attributes' => [
         'title' => 'タイトル',
+        'due_date'=>'期限日'
     ],
 
 ];
