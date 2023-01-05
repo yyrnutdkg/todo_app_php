@@ -22,9 +22,16 @@
                         <th>Todoリスト</th>
                     </thead>
                     <tbody>
+                        <tr>
+                            <th>タイトル</th>
+                            <th>詳細</th>
+                            <th>期限日</th>
+                            <th>タスク状況</th>
+                        </tr>
                       <tr>
                           <td>{{ $todo->title }}</td>
                           <td>{{ $todo->description }}</td>
+                          <td>{{ $todo->due_date }}</td>
                           @if ($todo->completed)
                             <td><p>タスク完了済</p></td>
                           @else

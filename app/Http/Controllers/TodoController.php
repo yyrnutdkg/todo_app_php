@@ -54,12 +54,14 @@ class TodoController extends Controller
         $request->validate([
             'title'=>'required|string|max:255',
             'description'=>'nullable|string',
-            'completed' =>'nullable'
+            'completed' =>'nullable',
+            'due_date' => 'nullable'
         ]);
 
         $todo = new Todo();
         $todo->title = $request->input('title');
         $todo->description = $request->input('description');
+        $todo->due_date = $request->input('due_date');
         $todo->user_id = Auth::user()-> id;
         $todo->save();
 
@@ -102,7 +104,8 @@ class TodoController extends Controller
         $request->validate([
             'title'=>'required|string|max:255',
             'description'=>'nullable|string',
-            'completed' =>'nullable'
+            'completed' =>'nullable',
+            'due_date' => 'nullable'
         ]);
 
         $todo = Todo::find($id);
@@ -111,6 +114,7 @@ class TodoController extends Controller
         }
         $todo->title = $request->input('title');
         $todo->description = $request->input('description');
+        $todo->due_date = $request->input('due_date');
 
         if($request->has('completed')){
             $todo->completed = true;
