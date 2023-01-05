@@ -38,9 +38,14 @@
                         <th>Todoリスト</th>
                     </thead>
                     <tbody>
+                        <tr>
+                            <th>タイトル</th>
+                            <th>期限日</th>
+                        </tr>
                         @forelse ($todos as $todo)
                         <tr>
                             <td>{{ $todo->title }}</td>
+                            <td>{{ $todo->due_date }}</td>
                             <td>
                                 <a href="{{ route('todo.show', $todo->id) }}" class="btn btn-outline-success">詳細</a>
                             </td>
